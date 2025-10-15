@@ -1,7 +1,5 @@
 ## RealmEyeTool
-HTTP server that fetches a players summary or exaltations.
-Responds with a JSON object containing the requested data.
-
+HTTP server that fetches a players summary or exaltations and responds with a JSON object containing the requested data.
 
 **Install instructions:**
 - `npm install` to install all dependencies
