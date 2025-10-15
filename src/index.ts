@@ -3,6 +3,9 @@ import http from 'http'
 import { getSummary } from './functions/getSummary'
 import { getExaltations } from './functions/getExaltations'
 
+const PORT = 42069
+const HOSTNAME = '0.0.0.0'
+
 // TODO handle player not found
 const server = http.createServer(async (req, res) => {
     const reqUrlObj = req.url?.split('=')
@@ -25,4 +28,7 @@ const server = http.createServer(async (req, res) => {
     }
 })
 
-server.listen(42069, '10.0.0.157')
+server.listen(PORT, HOSTNAME, () => {
+    console.log(`realmEyeTool ready.`)
+    console.log(`Listening to http://${HOSTNAME}:${PORT}`)
+})
