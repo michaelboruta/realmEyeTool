@@ -7,15 +7,16 @@ export async function getSummary(user:string) {
     const req = await fetch(url)
     const html = await req.text()
     
-    // load html and find trows
+    // load html, if player not found return undefined, otherwise parse data
     const $ = cheerio.load(html)
+    const playerNotFound = $('.player-not-found').html()
+    if (playerNotFound) return undefined
     const tbody = $('.summary').find('tbody')
     const trows = tbody.find('tr')
 
     // create player summary
     const summary = new Summary()
     summary.accountName = $('.entity-name').text()
-    if (!summary.accountName) return undefined
     trows.each((index, element) => {
         // exalts
         if (index === 2) {

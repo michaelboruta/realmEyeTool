@@ -20,3 +20,4 @@ HTTP server that fetches a players summary or exaltations and responds with a JS
 - To get a player's exaltations
   - `http://yourIPhere:42069/exaltations={playerName}`
   - response of type [[ClassExaltations]](src/classes/ClassExaltations.ts) (array of **ClassExaltations**)
+- Returns an empty message if theres no data found.

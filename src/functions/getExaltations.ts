@@ -6,9 +6,13 @@ export async function getExaltations(user:string) {
     const url = `https://realmeye.com/exaltations-of/${user}`
     const req = await fetch(url)
     const html = await req.text()
-    
-    // load html and find table
     const $ = cheerio.load(html)
+
+    // if player not found return undefined
+    const playerNotFound = $('.player-not-found').html()
+    if (playerNotFound) return undefined
+    
+    // find trows
     const table = $('table').last()
     const tbody = table.find('tbody')
     const trows = tbody.find('tr')
