@@ -11,21 +11,39 @@ const server = http.createServer(async (req, res) => {
     const reqUrlObj = req.url?.split('=')
     if (!reqUrlObj) { res.end('error. invalid req url'); return }
     
+    // /route=username
     const reqUrl = reqUrlObj[0]
-    const user = reqUrlObj[1]
+    const username = reqUrlObj[1]
 
-    if (!user || !reqUrl) { res.end('error. cant find route or username'); return }
+    if (reqUrlObj.length != 2) { 
+        res.statusCode = 404;
+        res.end('error. cant parse route and username. expected /summary=username or /exaltations=username, got: '+req.url); return 
+    }
 
     switch(reqUrl) {
+    
         case '/summary': {
-            const summary = await getSummary(user)
+            const summary = await getSummary(username)
+            res.statusCode = 200
             res.end(JSON.stringify(summary))
+            break
         }
+    
         case '/exaltations': {
-            const exaltations = await getExaltations(user)
+            const exaltations = await getExaltations(username)
+            res.statusCode = 200
             res.end(JSON.stringify(exaltations))
+            break
         }
+    
+        default: {
+            res.statusCode = 404
+            res.end('error. invalid route '+reqUrl);
+            break    
+        }
+    
     }
+
 })
 
 server.listen(PORT, HOSTNAME, () => {
