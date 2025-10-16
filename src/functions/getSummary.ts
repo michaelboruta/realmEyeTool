@@ -15,6 +15,7 @@ export async function getSummary(user:string) {
     // create player summary
     const summary = new Summary()
     summary.accountName = $('.entity-name').text()
+    if (!summary.accountName) return undefined
     trows.each((index, element) => {
         // exalts
         if (index === 2) {
