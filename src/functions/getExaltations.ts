@@ -113,20 +113,6 @@ export async function getExaltations(user:string) {
                     break
                 }
             }
-            /**
-             * 0 - class img
-             * 1 - class name
-             * 2 - num exalts for class
-             * 3 - hp
-             * 4 - mp
-             * 5 - att
-             * 6 - def
-             * 7 - spd
-             * 8 - dex
-             * 9 - vit
-             * 10 - wis
-             */
-            
         })
         exaltations.push(exalts)
     })
