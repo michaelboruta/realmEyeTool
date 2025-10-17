@@ -4,11 +4,13 @@ export class Summary {
     fame:string
     exalts:string
     guild:string
+    description: string[]
     constructor() {
         this.accountName = ''
         this.accountFame = ''
         this.fame = ''
         this.exalts = ''
         this.guild = ''
+        this.description = []
     }
 }

@@ -2,6 +2,7 @@ import * as cheerio from 'cheerio'
 import { Summary } from '../classes/Summary'
 
 export async function getSummary(user:string) {
+    
     // create request
     const url = `https://realmeye.com/player/${user}`
     const req = await fetch(url)
@@ -14,9 +15,10 @@ export async function getSummary(user:string) {
     const tbody = $('.summary').find('tbody')
     const trows = tbody.find('tr')
 
-    // create player summary
     const summary = new Summary()
     summary.accountName = $('.entity-name').text()
+
+    // summary
     trows.each((index, element) => {
         // exalts
         if (index === 2) {
@@ -46,6 +48,12 @@ export async function getSummary(user:string) {
             })
         }
         
+    })
+
+    //description
+    const description = $('.description-line')
+    description.each((i,e) => {
+        summary.description.push($(e).text())
     })
 
     return summary
